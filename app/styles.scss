@@ -1,69 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap');
+
+* {
+  font-family: 'Inter Tight', sans-serif; // Define a fonte para todo o projeto
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff; // Cor de fundo, ajuste conforme necessário
+
+  .logo {
+    height: auto; // Para manter a proporção da imagem
+    margin-right: 10px; // Espaçamento entre os logotipos
+  }
+
+  .logomark {
+    width: 33.1px; // Largura da Logomark
+  }
+
+  .logotype {
+    width: 106.14px; // Largura da Logotype
+  }
+
+  .welcome-message {
+    flex-grow: 1; // Para ocupar o espaço restante
+    text-align: center;
+    font-size: 24px; // Tamanho do texto de bem-vindo
+    font-weight: 500;
+  }
+
+  .date {
+    margin-left: auto; // Empurra a data para o final do header
+    font-size: 16px; // Tamanho da data
+    color: #757575; // Cor da data
+    font-weight: 400;
+  }
+}
+
 #todo-container {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #c60808;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
-    h1 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-  
-    form {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #EAECF0; 
+
+  h1 {
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #757575;
+    font-weight: 400;
+    padding-bottom: 40px;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
       display: flex;
-      gap: 10px;
-  
-      input {
-        flex: 1;
-        padding: 10px;
-        border-radius: 4px;
-        border: 1px solid #ddd;
-      }
-  
-      button {
-        padding: 10px 20px;
-        background-color: #0070f3;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-  
-        &:hover {
-          background-color: #005bb5;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: white;
+      margin-top: 10px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      width: 386px;
+
+      .checkbox {
+        display: flex;
+        align-items: center;
+
+        input[type="checkbox"] {
+          display: none; // Oculta o checkbox original
+        }
+
+        label {
+          position: relative;
+          cursor: pointer;
+          width: 24px;
+          height: 24px;
+          border: 10px solid #ccc;
+          border-radius: 4px;
+          margin-right: 8px;
+          background-color: white;
+
+          &.checked {
+            background-color: #A0DCF6; // Cor do fundo quando marcado
+            border-color: #0796D3; // Cor da borda quando marcado
+
+            &:after {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              width: 12px;
+              height: 12px;
+              background-color: #0796D3; // Cor do check
+              border-radius: 50%;
+              transform: translate(-50%, -50%);
+            }
+          }
         }
       }
-    }
-  
-    ul {
-      list-style: none;
-      padding: 0;
-  
-      li {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px;
-        background-color: white;
-        margin-top: 10px;
-        border-radius: 4px;
-        border: 1px solid #ddd;
-  
-        button {
-          background-color: red;
-          color: white;
-          border: none;
-          padding: 5px 10px;
-          border-radius: 4px;
-          cursor: pointer;
-  
-          &:hover {
-            background-color: darkred;
-          }
+
+      button {
+        background: none; // Remove o fundo do botão
+        border: none; // Remove a borda do botão
+        cursor: pointer; // Muda o cursor para pointer
+
+        .trash-icon {
+          width: 24px; // Ajuste o tamanho da imagem
+          height: 24px; // Ajuste o tamanho da imagem
         }
       }
     }
   }
-  
+}
+
+h2 {
+  text-align: center; // Centraliza o texto
+  font-size: 16px; // Tamanho do texto
+  margin-bottom: 20px; // Espaçamento inferior
+  color: #757575; // Cor do texto
+  font-weight: 400; // Peso do texto
+  padding-bottom: 40px; // Espaçamento inferior
+}
+
+.add-task-button {
+  width: 450px; // Largura do botão
+  height: 51px; // Altura do botão
+  background: linear-gradient(to right, #0997D4, #53C0F0); // Gradiente do botão
+  color: white; // Cor do texto
+  border: none; // Remove borda
+  border-radius: 4px; // Arredondamento dos cantos
+  cursor: pointer; // Muda o cursor para pointer
+  font-size: 16px; // Tamanho da fonte
+  margin-top: 20px; // Espaçamento superior
+  margin: 20px auto; // Centraliza horizontalmente
+  display: block; // Garante que o botão se comporte como um bloco
+
+}
+
+// Estilos do modal de adicionar tarefa
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent; // Fundo escurecido
+  backdrop-filter: blur(3px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 450px; // Largura do modal
+  height: 268px;
+  max-height: 286px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // Sombra nas laterais e parte inferior
+  display: flex;
+  flex-direction: column; // Coloca os elementos em coluna
+
+  .modal-header {
+    margin-bottom: 20px; // Espaçamento entre o cabeçalho e a caixa de entrada
+
+    h2 {
+      margin: 0; // Remove margens do título
+      font-size: 24px; // Tamanho do título
+      text-align: left; // Alinhamento à esquerda
+    }
+  }
+
+  .modal-input {
+    display: flex;
+    flex-direction: column; // Coloca o título em cima do input
+    padding-top: 40px;
+
+    label {
+      margin-bottom: 5px; // Espaçamento entre o título e o input
+      font-size: 16px; // Tamanho do texto do título
+      font-weight: 400; // Peso do texto
+    }
+
+    input {
+      width: 386px; // Largura total
+      height: 51px; // Altura do input
+      padding: 0px 12px; // Preenchimento
+      border-radius: 4px; // Arredondamento dos cantos
+      border: 1px solid #ddd; // Borda
+      margin-bottom: 10px; // Espaçamento inferior
+      font-size: 16px; // Tamanho do texto
+      color: #707070; // Cor do texto
+    }
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between; // Espaçamento entre os botões
+    margin-top: 20px; // Espaçamento superior
+
+    button {
+      padding: 10px;
+      border-radius: 4px;
+      border: none;
+      width: 185px; // Largura dos botões
+      height: 51px;
+      font-size: 16px;
+
+      &:first-child {
+        background-color: #E7EEFB; // Cor do botão Cancelar
+        cursor: pointer; // Muda o cursor para pointer
+      }
+
+      &:last-child {
+        background: linear-gradient(to right, #0997D3, #53C0F0); // Gradiente do botão Adicionar
+        color: white; // Cor do texto
+        cursor: pointer; // Muda o cursor para pointer
+      }
+    }
+  }
+}
+
+// Estilos do modal de confirmação de exclusão
+.delete-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent; // Fundo escurecido
+  backdrop-filter: blur(3px);
+}
+
+.delete-modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  width: 450px; // Largura do modal
+  height: 232px;
+  box-shadow: 0 28px 28px rgba(0, 0, 0, 0.2); // Sombra do modal
+  display: flex;
+  flex-direction: column; // Coloca os elementos em coluna
+  padding: 30px;
+
+  h2 {
+    font-size: 24px; // Tamanho do título
+    margin-bottom: 10px; // Espaçamento inferior
+    font-weight: 500;
+    padding-top: 30px;
+  }
+
+  p {
+    font-size: 16px; // Tamanho da mensagem
+    margin-bottom: 20px; // Espaçamento inferior da mensagem
+    text-align: left; // Centraliza a mensagem
+    color: #757575;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between; // Espaçamento entre os botões
+
+    button {
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      width: 185px; // Largura dos botões
+      height: 51px;
+      font-size: 16px;
+
+      &:first-child {
+        background-color: #E7EEFB; // Cor do botão Cancelar
+        cursor: pointer; // Muda o cursor para pointer
+      }
+
+      &:last-child {
+        background: linear-gradient(to right, #0997D3, #53C0F0); // Gradiente do botão Confirmar
+        color: white; // Cor do texto
+        cursor: pointer; // Muda o cursor para pointer
+      }
+    }
+  }
+}
