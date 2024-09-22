@@ -47,8 +47,10 @@ export default function ToDoList() {
   return (
     <>
       <header className="header">
+        <div className="logos">
         <img src="/Logomark.png" alt="Logotipo" className="logo logomark" />
         <img src="/Logotype.png" alt="Logotipo" className="logo logotype" />
+        </div>
         <h1 className="welcome-message">Bem-vindo de volta, Marcus</h1>
         <span className="date">Segunda, 01 de dezembro de 2025</span>
       </header>
@@ -57,6 +59,7 @@ export default function ToDoList() {
         <ul id="task-list">
           {tasks.map((task, index) => (
             <li key={index}>
+              <div className='esquerda'>
               <input
                 type="checkbox"
                 checked={completedTasks.includes(task)}
@@ -65,6 +68,7 @@ export default function ToDoList() {
               <span style={{ textDecoration: completedTasks.includes(task) ? 'line-through' : 'none' }}>
                 {task}
               </span>
+              </div>
               <button onClick={() => openDeleteConfirmation(task)}>
                 <img src="/icon.png" alt="Remover" className="trash-icon" />
               </button>
@@ -75,8 +79,10 @@ export default function ToDoList() {
         <ul id="completed-task-list">
           {completedTasks.map((task, index) => (
             <li key={index}>
+              <div>
               <input type="checkbox" checked readOnly />
               <span style={{ textDecoration: 'line-through' }}>{task}</span>
+              </div>
               <button onClick={() => openDeleteConfirmation(task)}>
                 <img src="/icon.png" alt="Remover" className="trash-icon" />
               </button>

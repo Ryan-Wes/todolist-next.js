@@ -6,22 +6,26 @@
 
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 10px;
   background-color: #fff; // Cor de fundo, ajuste conforme necessário
+  height: 60px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2); // Sombra do modal
 
   .logo {
-    height: auto; // Para manter a proporção da imagem
-    margin-right: 10px; // Espaçamento entre os logotipos
+    align-items: center;
+    justify-content: center;
   }
 
   .logomark {
     width: 33.1px; // Largura da Logomark
+    height: 32.93px;
   }
 
   .logotype {
     width: 106.14px; // Largura da Logotype
+    height: 15.5px;
   }
 
   .welcome-message {
@@ -29,6 +33,7 @@
     text-align: center;
     font-size: 24px; // Tamanho do texto de bem-vindo
     font-weight: 500;
+    padding-left: 90px;
   }
 
   .date {
@@ -45,7 +50,7 @@
   padding: 20px;
   background-color: #fff;
   border-radius: 8px;
-  border: 1px solid #EAECF0; 
+  border: 1px solid #EAECF0;
 
   h1 {
     text-align: center;
@@ -62,64 +67,80 @@
 
     li {
       display: flex;
+      /* Adjust the alignment here for better spacing */
       justify-content: space-between;
       align-items: center;
       padding: 10px;
       background-color: white;
       margin-top: 10px;
       border-radius: 4px;
-      border: 1px solid #ddd;
+      border: 1px dashed #ddd;
       width: 386px;
 
-      .checkbox {
+      .task-content {
         display: flex;
-        align-items: center;
+        justify-content: space-between;
 
-        input[type="checkbox"] {
-          display: none; // Oculta o checkbox original
-        }
+        /* Group checkbox and span together */
+        .checkbox {
+          display: flex;
+          align-items: center;
+          margin-right: 10px;
 
-        label {
-          position: relative;
-          cursor: pointer;
-          width: 24px;
-          height: 24px;
-          border: 10px solid #ccc;
-          border-radius: 4px;
-          margin-right: 8px;
-          background-color: white;
+          input[type="checkbox"] {
+            display: none; // Oculta o checkbox original
+          }
 
-          &.checked {
-            background-color: #A0DCF6; // Cor do fundo quando marcado
-            border-color: #0796D3; // Cor da borda quando marcado
+          label {
+            position: relative;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
 
-            &:after {
-              content: '';
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              width: 12px;
-              height: 12px;
-              background-color: #0796D3; // Cor do check
-              border-radius: 50%;
-              transform: translate(-50%, -50%);
+            &.checked {
+              background-color: #A0DCF6; // Cor de fundo quando marcado
+              border-color: #0796D3; // Cor da borda quando marcado
+
+              &:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 12px;
+                height: 12px;
+                background-color: #0796D3; // Cor do check
+                border-radius: 50%;
+                transform: translate(-50%, -50%);
+              }
             }
           }
         }
+
+        .task-text {
+          font-size: 16px;
+          color: #333;
+          /* Adjust margin here for better spacing */
+          margin-left: 5px;
+        }
       }
 
+      // Trash icon alinhado à direita
       button {
-        background: none; // Remove o fundo do botão
-        border: none; // Remove a borda do botão
-        cursor: pointer; // Muda o cursor para pointer
+        background: none;
+        border: none;
+        cursor: pointer;
 
         .trash-icon {
-          width: 24px; // Ajuste o tamanho da imagem
-          height: 24px; // Ajuste o tamanho da imagem
+          width: 24px;
+          height: 24px;
         }
       }
     }
   }
+
 }
 
 h2 {
@@ -134,7 +155,7 @@ h2 {
 .add-task-button {
   width: 450px; // Largura do botão
   height: 51px; // Altura do botão
-  background: linear-gradient(to right, #0997D4, #53C0F0); // Gradiente do botão
+  background: linear-gradient(to right, #0997D3, #53C0F0); // Gradiente do botão
   color: white; // Cor do texto
   border: none; // Remove borda
   border-radius: 4px; // Arredondamento dos cantos
@@ -143,7 +164,6 @@ h2 {
   margin-top: 20px; // Espaçamento superior
   margin: 20px auto; // Centraliza horizontalmente
   display: block; // Garante que o botão se comporte como um bloco
-
 }
 
 // Estilos do modal de adicionar tarefa
@@ -154,7 +174,7 @@ h2 {
   right: 0;
   bottom: 0;
   background-color: transparent; // Fundo escurecido
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px) opacity(97%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -163,33 +183,31 @@ h2 {
 .modal-content {
   background: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 16px;
   width: 450px; // Largura do modal
-  height: 268px;
-  max-height: 286px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); // Sombra nas laterais e parte inferior
+  height: 286px;
+  box-shadow: 0 28px 28px rgba(0, 0, 0, 0.1); // Sombra nas laterais e parte inferior
   display: flex;
   flex-direction: column; // Coloca os elementos em coluna
 
-  .modal-header {
-    margin-bottom: 20px; // Espaçamento entre o cabeçalho e a caixa de entrada
-
-    h2 {
-      margin: 0; // Remove margens do título
-      font-size: 24px; // Tamanho do título
-      text-align: left; // Alinhamento à esquerda
-    }
+  h2 {
+    margin: 0; // Remove margens do título
+    font-size: 24px; // Tamanho do título
+    text-align: left; // Alinhamento à esquerda
+    color: black;
+    padding-top: 20px;
   }
+
 
   .modal-input {
     display: flex;
     flex-direction: column; // Coloca o título em cima do input
-    padding-top: 40px;
 
     label {
       margin-bottom: 5px; // Espaçamento entre o título e o input
       font-size: 16px; // Tamanho do texto do título
       font-weight: 400; // Peso do texto
+      padding-bottom: 10px;
     }
 
     input {
@@ -198,7 +216,7 @@ h2 {
       padding: 0px 12px; // Preenchimento
       border-radius: 4px; // Arredondamento dos cantos
       border: 1px solid #ddd; // Borda
-      margin-bottom: 10px; // Espaçamento inferior
+      margin-bottom: 30px; // Espaçamento inferior
       font-size: 16px; // Tamanho do texto
       color: #707070; // Cor do texto
     }
@@ -260,21 +278,20 @@ h2 {
     font-size: 24px; // Tamanho do título
     margin-bottom: 10px; // Espaçamento inferior
     font-weight: 500;
-    padding-top: 30px;
+    color: black;
+    text-align: left;
   }
 
   p {
-    font-size: 16px; // Tamanho da mensagem
-    margin-bottom: 20px; // Espaçamento inferior da mensagem
-    text-align: left; // Centraliza a mensagem
-    color: #757575;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    font-size: 16px; // Tamanho do texto
+    color: #333; // Cor do texto
+    margin-bottom: 30px; // Espaçamento inferior
   }
 
   .modal-buttons {
     display: flex;
     justify-content: space-between; // Espaçamento entre os botões
+    margin-top: auto; // Mantém os botões na parte inferior do modal
 
     button {
       padding: 10px;
@@ -290,9 +307,134 @@ h2 {
       }
 
       &:last-child {
-        background: linear-gradient(to right, #0997D3, #53C0F0); // Gradiente do botão Confirmar
+        background: linear-gradient(to right, #D30707, #F05353); // Cor do botão Excluir
         color: white; // Cor do texto
         cursor: pointer; // Muda o cursor para pointer
+      }
+    }
+  }
+}
+
+// Responsividade para telas menores
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; // Alinha elementos verticalmente
+    text-align: center;
+    display: flex;
+    justify-content: left;
+    align-items: start;
+    height: 114px;
+
+
+    .welcome-message {
+      padding-left: 0;
+      font-size: 20px; // Reduz o tamanho do texto
+    }
+
+    .date {
+      margin-left: 0;
+      font-size: 14px;
+    }
+  }
+
+  #todo-container {
+    max-width: 100%; // Ajusta o contêiner para ocupar a largura total
+    padding: 10px;
+
+    ul{
+
+
+    li {
+      width: 83vw;
+    }
+  }
+}
+
+  .add-task-button {
+    width: 80%; // Botão ocupa 100% da largura
+  }
+
+  .modal-overlay {
+    background-color: white; // Fundo escurecido
+    backdrop-filter: blur(3px);
+  }
+
+  .modal-content {
+    width: 300px; // Largura do modal
+    height: 100vh;
+
+    .modal-input {
+
+      input {
+        width: 272px; // Largura total
+      }
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: space-between; // Espaçamento entre os botões
+      flex-direction: column;
+      margin-top: 20px; // Espaçamento superior
+
+      button {
+        width: 272px; // Largura dos botões
+        height: 51px;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto; // Centraliza horizontalmente
+        display: block; // Garante que o botão se comporte como um bloco
+
+        &:first-child {
+          background-color: #E7EEFB; // Cor do botão Cancelar
+          cursor: pointer; // Muda o cursor para pointer
+          order: 2;
+        }
+
+        &:last-child {
+          background: linear-gradient(to right, #0997D3, #53C0F0); // Gradiente do botão Adicionar
+          color: white; // Cor do texto
+          cursor: pointer; // Muda o cursor para pointer
+          order: 1;
+        }
+      }
+    }
+  }
+
+  .delete-modal-overlay {
+    background-color: white; // Fundo escurecido
+    backdrop-filter: blur(3px);
+  }
+
+  .delete-modal-content {
+    width: 300px; // Largura do modal
+    height: 100vh;
+
+    .modal-buttons {
+      display: flex;
+      justify-content: space-between; // Espaçamento entre os botões
+      flex-direction: column;
+      margin-top: 20px; // Espaçamento superior
+
+      button {
+        width: 272px; // Largura dos botões
+        height: 51px;
+        justify-content: center;
+        align-items: center;
+        margin: 10px auto; // Centraliza horizontalmente
+        display: block; // Garante que o botão se comporte como um bloco
+
+        &:first-child {
+          background-color: #E7EEFB; // Cor do botão Cancelar
+          cursor: pointer; // Muda o cursor para pointer
+          order: 2;
+        }
+
+        &:last-child {
+          background: linear-gradient(to right, #D30707, #F05353); // Cor do botão Excluir
+          color: white; // Cor do texto
+          cursor: pointer; // Muda o cursor para pointer
+          order: 1;
+        }
       }
     }
   }
